@@ -1,4 +1,4 @@
-package com.kevinchristian.app.security;
+package com.kevinchristian.app.service;
 
 import com.kevinchristian.app.dto.response.SuggestionListResponseDTO;
 
