@@ -8,10 +8,7 @@ import com.kevinchristian.app.validation.fileextension.FileExtension;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -24,7 +21,7 @@ public class GeonameController {
     private GeonameService geonameService;
     private GeonameMapper geonameMapper;
 
-    @PostMapping
+    @PutMapping
     public ResponseEntity<Void> createGeonames(
             @FileExtension(
                     message = "Invalid File Extension. Must be .tsv",

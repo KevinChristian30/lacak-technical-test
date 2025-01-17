@@ -7,6 +7,7 @@ import com.kevinchristian.app.repository.GeonameRepository;
 import com.kevinchristian.app.service.GeonameService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,8 +17,10 @@ public class GeonameServiceImpl implements GeonameService {
     private GeonameRepository geonameRepository;
     private GeonameMapper geonameMapper;
 
+    @Transactional
     @Override
     public void create(List<GeonameCreateDTO> geonameCreateDTOS) {
+        geonameRepository.batchDelete();
         List<Geoname> geonames = geonameMapper.toEntities(geonameCreateDTOS);
         geonameRepository.saveAll(geonames);
     }
