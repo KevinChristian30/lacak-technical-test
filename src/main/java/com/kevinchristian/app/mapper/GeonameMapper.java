@@ -1,6 +1,7 @@
 package com.kevinchristian.app.mapper;
 
 import com.kevinchristian.app.dto.internal.GeonameCreateDTO;
+import com.kevinchristian.app.entity.Geoname;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -26,4 +27,8 @@ public interface GeonameMapper {
      * @throws IOException If there is an error reading the file or parsing its content.
      */
     List<GeonameCreateDTO> toCreateDTOs(MultipartFile multipartFile);
+
+    Geoname toEntity(GeonameCreateDTO geonameCreateDTO);
+
+    List<Geoname> toEntities(List<GeonameCreateDTO> geonameCreateDTOS);
 }

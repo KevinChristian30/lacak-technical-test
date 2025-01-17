@@ -2,6 +2,7 @@ package com.kevinchristian.app.mapper.impl;
 
 import com.kevinchristian.app.constant.GeonameTSVIndex;
 import com.kevinchristian.app.dto.internal.GeonameCreateDTO;
+import com.kevinchristian.app.entity.Geoname;
 import com.kevinchristian.app.mapper.GeonameMapper;
 import com.kevinchristian.app.util.NumberUtil;
 import org.springframework.stereotype.Component;
@@ -15,24 +16,6 @@ import java.util.List;
 
 @Component
 public class GeonameMapperImpl implements GeonameMapper {
-
-    @Override
-    public List<GeonameCreateDTO> toCreateDTOs(MultipartFile multipartFile) {
-        List<GeonameCreateDTO> geonameCreateDTOS = new LinkedList<>();
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(multipartFile.getInputStream()));
-            reader.readLine();
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                geonameCreateDTOS.add(fromTabDelimitedString(line));
-            }
-        } catch (IOException e) {
-        }
-
-        return geonameCreateDTOS;
-    }
-
     private GeonameCreateDTO fromTabDelimitedString(String source) {
         final String DELIMITER = "\t";
         String[] values = source.split(DELIMITER, -1);
@@ -59,5 +42,50 @@ public class GeonameMapperImpl implements GeonameMapper {
         geonameCreateDTO.setModifiedAt(values[GeonameTSVIndex.MODIFIED_AT_INDEX]);
 
         return geonameCreateDTO;
+    }
+
+    @Override
+    public List<GeonameCreateDTO> toCreateDTOs(MultipartFile multipartFile) {
+        List<GeonameCreateDTO> geonameCreateDTOS = new LinkedList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(multipartFile.getInputStream()));
+            reader.readLine();
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                geonameCreateDTOS.add(fromTabDelimitedString(line));
+            }
+        } catch (IOException e) {
+        }
+
+        return geonameCreateDTOS;
+    }
+
+    @Override
+    public Geoname toEntity(GeonameCreateDTO dto) {
+        return Geoname.builder()
+                .geonameId(dto.getId())
+                .name(dto.getName())
+                .ascii(dto.getAscii())
+                .altName(dto.getAltName())
+                .latitude(dto.getLat())
+                .longitude(dto.getLongitude())
+                .featCode(dto.getFeatCode())
+                .country(dto.getCountry())
+                .cc2(dto.getCc2())
+                .admin1(dto.getAdmin1())
+                .admin2(dto.getAdmin2())
+                .admin3(dto.getAdmin3())
+                .admin4(dto.getAdmin4())
+                .population(dto.getPopulation())
+                .elevation(dto.getElevation())
+                .dem(dto.getDem())
+                .tz(dto.getTz())
+                .build();
+    }
+
+    @Override
+    public List<Geoname> toEntities(List<GeonameCreateDTO> geonameCreateDTOS) {
+        return geonameCreateDTOS.stream().map(this::toEntity).toList();
     }
 }

@@ -1,6 +1,6 @@
 package com.kevinchristian.app.entity;
 
-import com.kevinchristian.app.entity.base.AbstractBatchableBaseEntity;
+import com.kevinchristian.app.entity.base.AbstractBaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -13,7 +13,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class Geoname extends AbstractBatchableBaseEntity {
+public class Geoname extends AbstractBaseEntity {
     @Column(name = "geoname_id")
     private Long geonameId;
 
@@ -23,7 +23,7 @@ public class Geoname extends AbstractBatchableBaseEntity {
     @Column(name = "ascii")
     private String ascii;
 
-    @Column(name = "alt_name", length = 1000)
+    @Column(name = "alt_name", length = 5000)
     private String altName;
 
     @Column(name = "lat")

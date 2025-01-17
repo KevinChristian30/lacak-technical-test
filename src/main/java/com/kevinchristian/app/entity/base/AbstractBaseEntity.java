@@ -1,12 +1,13 @@
 package com.kevinchristian.app.entity.base;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,17 +15,16 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @MappedSuperclass
-public abstract class AbstractBatchableBaseEntity implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public abstract class AbstractBaseEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 3404209975721702645L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_generator")
-    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "secure_id", unique = true, length = 36)
@@ -41,6 +41,17 @@ public abstract class AbstractBatchableBaseEntity implements Serializable {
     @LastModifiedDate
     @Column(name = "modified_date")
     private Date modifiedDate;
+
+    @CreatedBy
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @LastModifiedBy
+    @Column(name = "modified_by")
+    private String modifiedBy;
+
+    @Column(name = "deleted_by")
+    private String deletedBy;
 
     @Column(name = "is_deleted")
     private Boolean isDeleted = false;
@@ -60,7 +71,7 @@ public abstract class AbstractBatchableBaseEntity implements Serializable {
         if (getClass() != object.getClass()) return false;
         if (Hibernate.getClass(this) != Hibernate.getClass(object)) return false;
 
-        AbstractBatchableBaseEntity that = (AbstractBatchableBaseEntity) object;
+        AbstractBaseEntity that = (AbstractBaseEntity) object;
         return null != id && Objects.equals(id, that.id) && Objects.equals(secureId, that.secureId);
     }
 
