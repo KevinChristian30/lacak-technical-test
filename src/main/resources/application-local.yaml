@@ -1,6 +1,8 @@
 spring:
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: validate
   datasource:
     url: jdbc:postgresql://localhost:5432/lacak-technical-test-local
     username: postgres
