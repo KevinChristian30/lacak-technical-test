@@ -7,15 +7,15 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 @Entity
-@Table(name = "locations")
+@Table(name = "geonames")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Location extends AbstractBatchableBaseEntity {
-    @Column(name = "location_id")
-    private Long locationId;
+public class Geoname extends AbstractBatchableBaseEntity {
+    @Column(name = "geoname_id")
+    private Long geonameId;
 
     @Column(name = "name")
     private String name;
