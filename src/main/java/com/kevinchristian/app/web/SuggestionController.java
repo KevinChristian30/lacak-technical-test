@@ -15,7 +15,11 @@ public class SuggestionController {
     private SuggestionService suggestionService;
 
     @GetMapping
-    public ResponseEntity<SuggestionListResponseDTO> list() {
-        return ResponseEntity.ok(suggestionService.listSuggestions());
+    public ResponseEntity<SuggestionListResponseDTO> list(
+            @RequestParam(value = "q", required = true) String q,
+            @RequestParam(value = "latitude", required = false) Double latitude,
+            @RequestParam(value = "longitude", required = false) Double longitude
+    ) {
+        return ResponseEntity.ok(suggestionService.listSuggestions(q, latitude, longitude));
     }
 }

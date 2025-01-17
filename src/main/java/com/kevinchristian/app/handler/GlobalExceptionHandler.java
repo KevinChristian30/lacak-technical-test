@@ -7,6 +7,7 @@ import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -28,6 +29,13 @@ public class GlobalExceptionHandler {
                 .findFirst()
                 .orElse(ErrorMessage.VALIDATION_ERROR);
         ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(errorMessage);
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<ErrorResponseDTO> handleMissingParams(MissingServletRequestParameterException ex) {
+        String message = ErrorMessage.MISSING_PARAMETER_X + ex.getParameterName();
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(message);
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.BAD_REQUEST);
     }
 }
