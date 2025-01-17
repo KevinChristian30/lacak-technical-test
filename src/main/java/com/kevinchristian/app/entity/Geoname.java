@@ -27,10 +27,10 @@ public class Geoname extends AbstractBatchableBaseEntity {
     private String altName;
 
     @Column(name = "lat")
-    private Long latitude;
+    private Double latitude;
 
     @Column(name = "long")
-    private Long longitude;
+    private Double longitude;
 
     @Column(name = "feat_class")
     private String featClass;
