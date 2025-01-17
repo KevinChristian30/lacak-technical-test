@@ -1,7 +1,6 @@
 package com.kevinchristian.app.service.impl;
 
 import com.kevinchristian.app.dto.internal.GeonameCreateDTO;
-import com.kevinchristian.app.entity.Geoname;
 import com.kevinchristian.app.mapper.GeonameMapper;
 import com.kevinchristian.app.repository.GeonameRepository;
 import com.kevinchristian.app.service.GeonameService;
@@ -19,9 +18,8 @@ public class GeonameServiceImpl implements GeonameService {
 
     @Transactional
     @Override
-    public void create(List<GeonameCreateDTO> geonameCreateDTOS) {
-        geonameRepository.batchDelete();
-        List<Geoname> geonames = geonameMapper.toEntities(geonameCreateDTOS);
-        geonameRepository.saveAll(geonames);
+    public void replaceDataset(List<GeonameCreateDTO> geonameCreateDTOS) {
+        geonameRepository.batchDeleteAll();
+        geonameRepository.saveAll(geonameMapper.toEntities(geonameCreateDTOS));
     }
 }

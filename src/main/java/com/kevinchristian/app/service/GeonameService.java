@@ -5,5 +5,5 @@ import com.kevinchristian.app.dto.internal.GeonameCreateDTO;
 import java.util.List;
 
 public interface GeonameService {
-    void create(List<GeonameCreateDTO> geonameCreateDTOS);
+    void replaceDataset(List<GeonameCreateDTO> geonameCreateDTOS);
 }

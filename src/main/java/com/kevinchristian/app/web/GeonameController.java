@@ -22,7 +22,7 @@ public class GeonameController {
     private GeonameMapper geonameMapper;
 
     @PutMapping
-    public ResponseEntity<Void> createGeonames(
+    public ResponseEntity<Void> replaceGeonamesDataset(
             @FileExtension(
                     message = "Invalid File Extension. Must be .tsv",
                     allow = {"tsv"}
@@ -30,7 +30,7 @@ public class GeonameController {
             @RequestParam("file") MultipartFile file
     ) {
         List<GeonameCreateDTO> geonameCreateDTOS = new GeonameMapperImpl().toCreateDTOs(file);
-        geonameService.create(geonameCreateDTOS);
+        geonameService.replaceDataset(geonameCreateDTOS);
         return ResponseEntity.ok().build();
     }
 }

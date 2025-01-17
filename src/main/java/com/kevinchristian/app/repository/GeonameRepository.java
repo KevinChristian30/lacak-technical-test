@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface GeonameRepository extends BaseRepository<Geoname, Long> {
     @Modifying
     @Query("DELETE FROM Geoname")
-    void batchDelete();
+    void batchDeleteAll();
 }
