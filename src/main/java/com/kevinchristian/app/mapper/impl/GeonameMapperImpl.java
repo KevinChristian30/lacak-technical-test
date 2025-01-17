@@ -2,7 +2,7 @@ package com.kevinchristian.app.mapper.impl;
 
 import com.kevinchristian.app.constant.GeonameTSVIndex;
 import com.kevinchristian.app.dto.internal.GeonameCreateDTO;
-import com.kevinchristian.app.entity.Geoname;
+import com.kevinchristian.app.domain.entity.Geoname;
 import com.kevinchristian.app.mapper.GeonameMapper;
 import com.kevinchristian.app.util.NumberUtil;
 import org.springframework.stereotype.Component;

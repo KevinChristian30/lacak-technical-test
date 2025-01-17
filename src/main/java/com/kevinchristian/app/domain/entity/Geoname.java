@@ -1,6 +1,6 @@
-package com.kevinchristian.app.entity;
+package com.kevinchristian.app.domain.entity;
 
-import com.kevinchristian.app.entity.base.AbstractBaseEntity;
+import com.kevinchristian.app.domain.entity.base.AbstractBaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

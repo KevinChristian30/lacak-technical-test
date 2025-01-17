@@ -1,7 +1,7 @@
 package com.kevinchristian.app.mapper;
 
 import com.kevinchristian.app.dto.internal.GeonameCreateDTO;
-import com.kevinchristian.app.entity.Geoname;
+import com.kevinchristian.app.domain.entity.Geoname;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

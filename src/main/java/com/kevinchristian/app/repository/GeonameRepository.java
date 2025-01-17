@@ -1,6 +1,6 @@
 package com.kevinchristian.app.repository;
 
-import com.kevinchristian.app.entity.Geoname;
+import com.kevinchristian.app.domain.entity.Geoname;
 import com.kevinchristian.app.repository.base.BaseRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

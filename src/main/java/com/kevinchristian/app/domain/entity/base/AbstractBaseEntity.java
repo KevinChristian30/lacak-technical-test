@@ -1,4 +1,4 @@
-package com.kevinchristian.app.entity.base;
+package com.kevinchristian.app.domain.entity.base;
 
 import jakarta.persistence.*;
 import lombok.Data;

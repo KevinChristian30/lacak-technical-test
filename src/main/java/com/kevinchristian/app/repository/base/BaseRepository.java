@@ -1,6 +1,6 @@
 package com.kevinchristian.app.repository.base;
 
-import com.kevinchristian.app.entity.base.AbstractBaseEntity;
+import com.kevinchristian.app.domain.entity.base.AbstractBaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
