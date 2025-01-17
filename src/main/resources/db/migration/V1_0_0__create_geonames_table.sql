@@ -36,4 +36,4 @@ drop constraint if exists UK1hpgr0op957yrm6r9mk8ojgep;
 alter table if exists geonames
 add constraint UK1hpgr0op957yrm6r9mk8ojgep unique (secure_id);
 
-COMMENT ON TABLE geonames is '17/01/2025 by Kevin Christian';
+comment on table geonames is '17/01/2025 by Kevin Christian';
