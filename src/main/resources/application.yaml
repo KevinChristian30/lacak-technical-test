@@ -4,7 +4,7 @@ spring:
   application:
     name: kevin-christian-lacak-technical-test
   profiles:
-    active: local
+    active: ${spring_profiles_active}
   datasource:
     platform: postgres
   jpa:
