@@ -23,8 +23,8 @@ DECLARE
 	max_haversine_value DOUBLE PRECISION;
 BEGIN
 	-- 1. Declare constants
-	text_similarity_weight := 0.6;
-	distance_weight := 0.4;
+	text_similarity_weight := 0.75;
+	distance_weight := 0.25;
 	max_haversine_value := 20000;
 
 	-- 2. Get the maximum similarity between two texts, ranging from 0 to 1

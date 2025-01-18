@@ -1,7 +1,9 @@
 CREATE OR REPLACE FUNCTION get_suggestions(
 	search_query TEXT,
 	start_lat DOUBLE PRECISION,
-	start_long DOUBLE PRECISION
+	start_long DOUBLE PRECISION,
+	page_number INTEGER,
+	per_page INTEGER
 )
 RETURNS TABLE (
     secure_id VARCHAR(36),
@@ -32,6 +34,8 @@ BEGIN
     		)
     	) AS score
     FROM materialized_view_suggestions mvs
-   	ORDER BY score DESC;
+   	ORDER BY score DESC
+   	LIMIT per_page
+   	OFFSET per_page * (page_number - 1);
 END;
 $$ LANGUAGE plpgsql;
