@@ -1,5 +1,7 @@
 package com.kevinchristian.app.web;
 
+import com.kevinchristian.app.dto.internal.PaginationDTO;
+import com.kevinchristian.app.dto.internal.SuggestionFilterDTO;
 import com.kevinchristian.app.dto.response.SuggestionListResponseDTO;
 import com.kevinchristian.app.service.SuggestionService;
 import lombok.AllArgsConstructor;
@@ -18,8 +20,12 @@ public class SuggestionController {
     public ResponseEntity<SuggestionListResponseDTO> list(
             @RequestParam(value = "q", required = true) String q,
             @RequestParam(value = "latitude", required = false) Double latitude,
-            @RequestParam(value = "longitude", required = false) Double longitude
+            @RequestParam(value = "longitude", required = false) Double longitude,
+            @RequestParam(value = "latitude", required = false, defaultValue = "1") Integer pageNumber,
+            @RequestParam(value = "longitude", required = false, defaultValue = "10") Integer perPage
     ) {
-        return ResponseEntity.ok(suggestionService.listSuggestions(q, latitude, longitude));
+        PaginationDTO paginationDTO = new PaginationDTO(pageNumber, perPage);
+        SuggestionFilterDTO suggestionFilterDTO = new SuggestionFilterDTO(q, latitude, longitude, paginationDTO);
+        return ResponseEntity.ok(suggestionService.listSuggestions(suggestionFilterDTO));
     }
 }
