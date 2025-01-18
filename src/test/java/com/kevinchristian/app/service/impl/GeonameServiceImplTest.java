@@ -13,6 +13,8 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class GeonameServiceImplTest {
     @Mock
     private GeonameRepository geonameRepository;
@@ -29,6 +31,11 @@ public class GeonameServiceImplTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    void testSanity() {
+        assertTrue(true);
     }
 
     @Test

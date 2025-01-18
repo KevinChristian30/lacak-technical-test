@@ -25,17 +25,7 @@ public class SuggestionServiceImpl implements SuggestionService {
                 dto.getLongitude(),
                 dto.getPaginationDTO().getPageNumber(),
                 dto.getPaginationDTO().getPerPage()
-        ).stream().map(result -> (SuggestionQueryResult) result).toList();
-
-//        List<Object> suggestions = geonameRepository.getSuggestedGeonames(
-//                dto.getQ(),
-//                dto.getLatitude(),
-//                dto.getLongitude(),
-//                dto.getPaginationDTO().getPageNumber(),
-//                dto.getPaginationDTO().getPerPage()
-//        );
-
+        );
         return geonameMapper.toSuggestionListResponseDTO(suggestions);
     }
-
 }
