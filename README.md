@@ -37,3 +37,8 @@ java -jar target/app-0.0.1-SNAPSHOT.jar
 ```shell
 mvn test
 ```
+
+- Deployed App
+```shell
+https://lacak-technical-test-production.up.railway.app/api/v1/suggestions?q=New York City&latitude=40.71427&longitude=-74.00597&pageNumber=1&perPage=10
+```
