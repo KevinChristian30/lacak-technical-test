@@ -1,5 +1,3 @@
-drop function get_suggestions;
-
 CREATE OR REPLACE FUNCTION get_suggestions(
 	search_query TEXT,
 	start_lat DOUBLE PRECISION,
