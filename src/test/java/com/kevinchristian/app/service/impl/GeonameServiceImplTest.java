@@ -2,6 +2,7 @@ package com.kevinchristian.app.service.impl;
 
 import com.kevinchristian.app.dto.internal.GeonameCreateDTO;
 import com.kevinchristian.app.mapper.GeonameMapper;
+import com.kevinchristian.app.mock.dto.MockGeonameCreateDTO;
 import com.kevinchristian.app.repository.GeonameRepository;
 import com.kevinchristian.app.repository.SuggestionMaterializedViewRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,11 +42,7 @@ public class GeonameServiceImplTest {
     @Test
     void testReplaceDataSet() {
         // Arrange
-        List<GeonameCreateDTO> geonameCreateDTOS = List.of(
-                new GeonameCreateDTO(),
-                new GeonameCreateDTO(),
-                new GeonameCreateDTO()
-        );
+        List<GeonameCreateDTO> geonameCreateDTOS = MockGeonameCreateDTO.mockList();
 
         // Act
         geonameService.replaceDataset(geonameCreateDTOS);

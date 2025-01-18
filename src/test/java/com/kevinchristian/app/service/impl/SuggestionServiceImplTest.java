@@ -1,11 +1,12 @@
 package com.kevinchristian.app.service.impl;
 
 import com.kevinchristian.app.domain.query.SuggestionQueryResult;
-import com.kevinchristian.app.dto.internal.PaginationDTO;
 import com.kevinchristian.app.dto.internal.SuggestionFilterDTO;
-import com.kevinchristian.app.dto.response.SuggestionDetailResponseDTO;
 import com.kevinchristian.app.dto.response.SuggestionListResponseDTO;
 import com.kevinchristian.app.mapper.GeonameMapper;
+import com.kevinchristian.app.mock.domain.query.MockSuggestionQueryResult;
+import com.kevinchristian.app.mock.dto.MockSuggestionFilterDTO;
+import com.kevinchristian.app.mock.dto.MockSuggestionListResponseDTO;
 import com.kevinchristian.app.repository.GeonameRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,18 +42,9 @@ public class SuggestionServiceImplTest {
     @Test
     void testListSuggestions() {
         // Arrange
-        SuggestionFilterDTO suggestionFilterDTO = new SuggestionFilterDTO(
-                "query", 20.0, -20.0, new PaginationDTO(1, 10)
-        );
-        List<SuggestionQueryResult> mockSuggestions = Arrays.asList(
-                new SuggestionQueryResult("London", 1.0, -2.0, 0.6),
-                new SuggestionQueryResult("Paris", 3.0, -4.0, 0.5)
-        );
-        List<SuggestionDetailResponseDTO> mockSuggestionResponseDTOs = Arrays.asList(
-                new SuggestionDetailResponseDTO("London", 1.0, -2.0, 0.6),
-                new SuggestionDetailResponseDTO("Paris", 3.0, -4.0, 0.5)
-        );
-        SuggestionListResponseDTO expectedResponseDTO = new SuggestionListResponseDTO(mockSuggestionResponseDTOs);
+        SuggestionFilterDTO suggestionFilterDTO = MockSuggestionFilterDTO.mock();
+        List<SuggestionQueryResult> mockSuggestions = MockSuggestionQueryResult.mockList();
+        SuggestionListResponseDTO expectedResponseDTO = MockSuggestionListResponseDTO.mock();
 
         Mockito.when(geonameRepository.getSuggestedGeonames(
                 suggestionFilterDTO.getQ(),
