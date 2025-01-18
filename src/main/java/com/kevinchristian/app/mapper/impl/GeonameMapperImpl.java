@@ -1,8 +1,11 @@
 package com.kevinchristian.app.mapper.impl;
 
 import com.kevinchristian.app.constant.GeonameTSVIndex;
+import com.kevinchristian.app.domain.query.SuggestionQueryResult;
 import com.kevinchristian.app.dto.internal.GeonameCreateDTO;
 import com.kevinchristian.app.domain.entity.Geoname;
+import com.kevinchristian.app.dto.response.SuggestionDetailResponseDTO;
+import com.kevinchristian.app.dto.response.SuggestionListResponseDTO;
 import com.kevinchristian.app.mapper.GeonameMapper;
 import com.kevinchristian.app.util.NumberUtil;
 import org.springframework.stereotype.Component;
@@ -87,5 +90,18 @@ public class GeonameMapperImpl implements GeonameMapper {
     @Override
     public List<Geoname> toEntities(List<GeonameCreateDTO> geonameCreateDTOS) {
         return geonameCreateDTOS.stream().map(this::toEntity).toList();
+    }
+
+    @Override
+    public SuggestionListResponseDTO toSuggestionListResponseDTO(List<SuggestionQueryResult> geonameSuggestions) {
+        List<SuggestionDetailResponseDTO> suggestionDetailResponseDTOS = geonameSuggestions.stream().map(
+                suggestion -> new SuggestionDetailResponseDTO(
+                        suggestion.getName(),
+                        suggestion.getLatitude(),
+                        suggestion.getLongitude(),
+                        suggestion.getScore()
+                )
+        ).toList();
+        return new SuggestionListResponseDTO(suggestionDetailResponseDTOS);
     }
 }

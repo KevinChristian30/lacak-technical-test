@@ -1,9 +1,8 @@
 package com.kevinchristian.app.domain.entity;
 
 import com.kevinchristian.app.domain.entity.base.AbstractBaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.kevinchristian.app.domain.query.SuggestionQueryResult;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -13,6 +12,23 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
+@SqlResultSetMapping(
+        name = "SuggestionQueryResultMapping",
+        classes = @ConstructorResult(
+                targetClass = SuggestionQueryResult.class,
+                columns = {
+                        @ColumnResult(name = "name", type = String.class),
+                        @ColumnResult(name = "latitude", type = Double.class),
+                        @ColumnResult(name = "longitude", type = Double.class),
+                        @ColumnResult(name = "score", type = Double.class)
+                }
+        )
+)
+@NamedNativeQuery(
+        name = "GeonameRepository.getSuggestedGeonames",
+        query = "SELECT name, latitude, longitude, score FROM get_suggestions(:q, :latitude, :longitude, :pageNumber, :perPage)",
+        resultSetMapping = "SuggestionQueryResultMapping"
+)
 public class Geoname extends AbstractBaseEntity {
     @Column(name = "geoname_id")
     private Long geonameId;

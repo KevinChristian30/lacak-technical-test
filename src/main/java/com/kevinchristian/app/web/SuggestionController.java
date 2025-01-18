@@ -21,8 +21,8 @@ public class SuggestionController {
             @RequestParam(value = "q", required = true) String q,
             @RequestParam(value = "latitude", required = false) Double latitude,
             @RequestParam(value = "longitude", required = false) Double longitude,
-            @RequestParam(value = "latitude", required = false, defaultValue = "1") Integer pageNumber,
-            @RequestParam(value = "longitude", required = false, defaultValue = "10") Integer perPage
+            @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber,
+            @RequestParam(value = "perPage", required = false, defaultValue = "10") Integer perPage
     ) {
         PaginationDTO paginationDTO = new PaginationDTO(pageNumber, perPage);
         SuggestionFilterDTO suggestionFilterDTO = new SuggestionFilterDTO(q, latitude, longitude, paginationDTO);

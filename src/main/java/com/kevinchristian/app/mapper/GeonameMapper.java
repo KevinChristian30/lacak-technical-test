@@ -1,7 +1,9 @@
 package com.kevinchristian.app.mapper;
 
+import com.kevinchristian.app.domain.query.SuggestionQueryResult;
 import com.kevinchristian.app.dto.internal.GeonameCreateDTO;
 import com.kevinchristian.app.domain.entity.Geoname;
+import com.kevinchristian.app.dto.response.SuggestionListResponseDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -31,4 +33,6 @@ public interface GeonameMapper {
     Geoname toEntity(GeonameCreateDTO geonameCreateDTO);
 
     List<Geoname> toEntities(List<GeonameCreateDTO> geonameCreateDTOS);
+
+    SuggestionListResponseDTO toSuggestionListResponseDTO(List<SuggestionQueryResult> geonameSuggestions);
 }

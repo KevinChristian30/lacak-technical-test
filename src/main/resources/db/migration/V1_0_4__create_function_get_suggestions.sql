@@ -6,10 +6,9 @@ CREATE OR REPLACE FUNCTION get_suggestions(
 	per_page INTEGER
 )
 RETURNS TABLE (
-    secure_id VARCHAR(36),
     name TEXT,
-    lat DOUBLE PRECISION,
-    long DOUBLE PRECISION,
+    latitude DOUBLE PRECISION,
+    longitude DOUBLE PRECISION,
     score DOUBLE PRECISION
 ) AS
 $$
@@ -18,10 +17,9 @@ DECLARE
 BEGIN
 	RETURN QUERY
     SELECT
-    	mvs.secure_id,
     	mvs."name",
-    	mvs.lat,
-    	mvs.long,
+    	mvs.lat AS latitude,
+    	mvs.long AS longitude,
     	(
     		SELECT *
     		FROM calculate_score(
